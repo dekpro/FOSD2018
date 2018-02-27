@@ -59,7 +59,7 @@ http://www.templatemo.com/tm-488-classic
                 </div>                                  
             </div>            
         </div>
-
+		
         <div class="tm-home-img-container">
             <img src="img/tm-home-img.jpg" alt="Image" class="hidden-lg-up img-fluid">
 			<div class="centered">Ninth International Workshop on Feature-Oriented Software 
@@ -70,23 +70,16 @@ http://www.templatemo.com/tm-488-classic
         <section class="tm-section">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-xs-center">
-                        <h2 class="tm-gold-text tm-title">Latest news</h2>
-                        <p class="tm-subtitle"></p>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-xs-center">
+                        <h2 class="tm-gold-text tm-title">Program</h2>
+                        <p class="tm-subtitle">To be Defined</p>
                     </div>
-                </div>
-            </div> 
-
+				</div>
             </div>
         </section>
         
-		 <!-- Add for below the extra clearfix for only the required viewport 
-                        http://stackoverflow.com/questions/24590222/bootstrap-3-grid-with-different-height-in-each-item-is-it-solvable-using-only
-                    -->
-					
         <footer class="tm-footer">
             <div class="container-fluid">
-
                 <div class="row">
                     <div class="col-xs-12 tm-copyright-col">
                         <p class="tm-copyright-text">
@@ -95,12 +88,56 @@ http://www.templatemo.com/tm-488-classic
                     </div>
                 </div>
             </div>
-        </footer>  
+        </footer>
 
         <!-- load JS files -->
         <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
         <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h --> 
         <script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
+        <script>     
        
+            /* Google map
+            ------------------------------------------------*/
+            var map = '';
+            var center;
+
+            function initialize() {
+                var mapOptions = {
+                    zoom: 16,
+                    center: new google.maps.LatLng(13.758468,100.567481),
+                    scrollwheel: false
+                };
+            
+                map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
+
+                google.maps.event.addDomListener(map, 'idle', function() {
+                  calculateCenter();
+                });
+            
+                google.maps.event.addDomListener(window, 'resize', function() {
+                  map.setCenter(center);
+                });
+            }
+
+            function calculateCenter() {
+                center = map.getCenter();
+            }
+
+            function loadGoogleMap(){
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
+                document.body.appendChild(script);
+            }
+        
+            // DOM is ready
+            $(function() {
+
+                // Google Map
+                loadGoogleMap();
+            });
+
+        </script>             
+
 </body>
 </html>
